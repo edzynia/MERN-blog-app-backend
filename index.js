@@ -1,6 +1,3 @@
-import * as dotenv from 'dotenv';
-dotenv.config();
-
 import express from 'express';
 import mongoose from 'mongoose';
 import multer from 'multer';
@@ -13,6 +10,8 @@ import {
 } from './validations.js';
 import { checkAuth, handleValidationErrorrs } from './utils/index.js';
 import { UserController, PostController } from './controllers/index.js';
+import * as dotenv from 'dotenv';
+dotenv.config();
 
 mongoose
   .connect(process.env.MONGODB_URI)
@@ -75,8 +74,8 @@ app.patch(
   handleValidationErrorrs,
   PostController.update
 );
-
-app.listen(process.env.PORT, (err) => {
+//process.env.PORT ||
+app.listen(process.env.PORT || 4444, (err) => {
   if (err) {
     return console.log(err);
   }
